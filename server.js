@@ -42,8 +42,9 @@ app.use("/auth", require("./routes/auth")); // 로그인페이지
 app.use("/refresh", require("./routes/refresh"));
 app.use("/logout", require("./routes/logout"));
 
-app.use(verifyJWT); // routes 라우팅이 위에서 아래로 (waterfall) 실행되기 때문에 verifyJWT는 아래부터 적용한다.
+app.use(verifyJWT); // accessToken 검증(유효성 검사) // routes 라우팅이 위에서 아래로 (waterfall) 실행되기 때문에 verifyJWT는 아래부터 적용한다.
 app.use("/employees", require("./routes/api/employees"));
+app.use("/users", require("./routes/api/users"));
 
 // it is similar to catch...
 app.all("*", (req, res) => {
